@@ -3,7 +3,7 @@ Feature: Asignar Encuesta
     As a campaign manager
     I want to assign polls to a campaign
 
-Background: Campaing details page
+Background: Campaign details page
   Given I have logged in to the Digitall Experiences website
   And I am on a campaign details page
   And I have clicked the "Asignar Encuesta" button
