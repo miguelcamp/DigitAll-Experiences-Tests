@@ -1,84 +1,81 @@
-Given(/^I am on the Mercury Tours homepage$/) do
+Given('I have logged in to the Digitall Experiences website') do
     page.driver.browser.manage.window.maximize
-    visit('http://demo.guru99.com/test/newtours/')
-
+    visit(ENV['URL'])
+    fill_in 'Usuario', :with => ENV['USER']
+    fill_in 'Password', :with => ENV['PSW']
+    css = '.LoginButton'
+    find(:css, css).click
 end
 
-Given(/^I click the "([^"]*)" link$/) do |linkText|
- click_link(linkText)
+Given('I am on the catalogs page') do
+    xPath = "//a[contains(@class,'nav-link') and contains(text(), 'Catálogo')]"
+    find(:xpath, xPath).click
 end
-
-When(/^I enter the required fields as show below$/) do |table|
- data = table.rows_hash
- data.each_pair do |key, value|
-   case key
-   when "First Name:"
-       fill_in 'firstName', :with => value
-       @name = value
-   when "Last Name:"
-       fill_in 'lastName', :with => value
-       @lastName = value
-   when "Phone:"
-       fill_in 'phone', :with => value
-   when "Email:"
-       fill_in 'userName', :with => value
-   when "Address:"
-       fill_in 'address1', :with => value
-   when "City:"
-       fill_in 'city', :with => value
-   when "State/Province:"
-       fill_in 'state', :with => value
-   when "Postal Code:"
-       fill_in 'postalCode', :with => value
-   when "Country:"
-       select(value, :from => 'country')
-   when "User Name:"
-       fill_in 'email', :with => value
-       @userName = value
-   when "Password:"
-       fill_in 'password', :with => value
-   when "Confirm Password:"
-       fill_in 'confirmPassword', :with => value
-       @password = value
-   end
+  
+#Crear
+  When('I click on the {string} button') do |string|
+    xPath = "(//i[@title='Añadir al Catálogo'])[1]"
+    find(:xpath, xPath ).click
+  end
+  
+  When('I enter the required fields as show below') do |table|
+    text = Time.now.strftime("%d%m%Y%H%M")
+    data = table.rows_hash
+  data.each_pair do |key, value|
+    case key
+	when "Nombre:"
+    	fill_in 'Ingrese nombre del catálogo', :with => text
+	when "Descripcion:"
+		fill_in 'Ingrese descripción del catálogo', :with => value
+	end
+  end
+  end
+  
+  When('I select {string} on {string}') do |string, string2|
+    xPath = "(//option[@class='ng-star-inserted'  and contains(text(), 'UCB')])[1]"
+    find(:xpath, xPath).click
  end
-end
 
-When(/^send my registration form$/) do
- xpath_base = '/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[17]/td/input'
- find(:xpath, xpath_base).click
-end
+ When('I click button add catalog') do
+    xPath = "//button [2]"
+    find(:xpath, xPath).click
+    
+  end
 
-Then(/^the confirmation screen is show$/) do
- greeting = "Dear"+" "+@name+" "+@lastName 	
- expect(page).to have_content(greeting)
+  Then('the confirmation screen is displayed') do
+    css = '#toast-container > div > div'
+    text= "Catálogo creado con éxito"
+    sleep 3
+    kernel.puts find(:css, css ).text
+   expect(css).to have_content(text)
  
 end
-
-Then(/^my user name is "([^"]*)"$/) do |userName|
- text= " Note: Your user name is "+userName+"."
- expect(page).to have_content(text)
+  
+  When('I click on the catalog') do
+    xPath = "//span[@class='sidebar-name text-overflow text-overflow-sidebar dae-font-main-color' and contains(text(),'Mi Catalogo Privado')]"
+    find(:xpath, xPath).click
+  end
+  
+  Then('I will see catalog name') do
+    text= "Mi Catalogo Privado"
+    xPath = "//span[@class='sidebar-name text-overflow text-overflow-sidebar dae-font-main-color' and contains(text(),'Mi Catalogo Privado')]"
+    expect(xPath).to have_content(text)
 end
 
-Given(/^I enter my user and password$/) do
- fill_in 'userName', :with => ENV['USER']
- fill_in 'password', :with => ENV['PSW']
+#Eliminar
+When('I click on the Eliminar button') do
+    xPath = "//div[@class='row']/descendant::span[contains(@class, 'sidebar-name') and (text()='Mi Catalogo Privado')]/../../descendant::i[contains(@class, 'sidebar-catalog-trash-icon')][1]"
+    find(:xpath, xPath).click
 end
-
-When(/^I press the "([^"]*)" button$/) do |arg1|
- xpath = '/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[4]/td[2]/div/input'
- find(:xpath, xpath).click
+  
+  When('I confirm the delete action') do
+    xPath = '//button[2]'
+    find(:xpath,xPath).click
+  end
+  
+  Then('the catalog will no longer be on the list') do
+    text= "Mi Catalogo Privado"
+    xPath = "//span[@class='sidebar-name text-overflow text-overflow-sidebar dae-font-main-color' and contains(text(),'Mi Catalogo Privado')]"
+    expect(xPath).to have_no_content(text)
 end
-
-
-Then(/^the login successfully message is displayed$/) do
-   expect(page).to have_content("Login Successfully")
-   puts find(:css, 'body > div:nth-child(5) > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(4) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(3) > td > p:nth-child(1) > font > b').text
-   puts find(:xpath,'/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[1]/font/b').text
-end
-
-
-When(/^I press the Submit button$/) do
- xpath = '/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td/input'
- find(:xpath, xpath).click
-end
+  
