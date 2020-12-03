@@ -1,6 +1,6 @@
 Given(/^I am on the Digitall Experience website$/) do
     page.driver.browser.manage.window.maximize
-    visit('http://3.14.118.36:8080/dallex/login')
+    visit('/login')
 end
 
 Given(/^I enter my user and password login$/) do
