@@ -31,6 +31,7 @@ When('I enter the required fields as show below') do |table|
     when "Descripcion:"
       fill_in 'Ingrese descripción del catálogo', :with => value
     end
+
   end
   sleep 3
 end
@@ -63,6 +64,7 @@ Then('I will see catalog name {string}') do |catalogo|
   text= catalogo
   xPath = "//span[text()='"+catalogo+"']"
   expect(xPath).to have_content(text)
+
 end
 
 #Eliminar
@@ -81,5 +83,6 @@ Then('the catalog {string} will no longer be on the list') do |catalogo|
   xPath = "//span[@class='sidebar-name text-overflow text-overflow-sidebar dae-font-main-color']"
   sleep 3
   expect(xPath).to have_no_content(text)
+
 end
   

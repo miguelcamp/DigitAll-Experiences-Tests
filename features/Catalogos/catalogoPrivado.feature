@@ -5,7 +5,7 @@ Feature: Tab Private Catalogs
 Background: Setup
     Given I have logged in to the Digitall Experiences website
     And I am on the catalogs page
-
+@ca
 Scenario: Create private catalog        
     When I click on the "Añadir Catalogo Privado" button
     And I enter the required fields as show below

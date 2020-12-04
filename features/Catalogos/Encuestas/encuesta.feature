@@ -27,3 +27,4 @@ Scenario: Delete poll
     And I click on the "Eliminar" poll button
     And I confirm the delete poll action
     Then the poll "Mi Encuesta" will no longer be on the list
+
