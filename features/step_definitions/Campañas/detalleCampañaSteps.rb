@@ -48,5 +48,6 @@ end
 
 Then('I will see the Mystery Shopper {string} poll\'s details on the center of the page') do |pollTitle|
   xpath="//div[@id='surveySection']"
+  sleep(5)
   expect(find(:xpath, xpath)).to have_content(pollTitle)
 end

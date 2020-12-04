@@ -1,26 +1,30 @@
-Feature: Tab Encuesta
+Feature: Tab Poll
     As a Digitall Experiences user
-    I want to create public catalogs
+    I want to create, view and delete polls
 
-Background: Setup
-    Given I have logged in to the Digitall Experiences website
-    And I am on the catalogs page
+Background: Setup poll
+    When I click on the catalog "Mi Catalogo Encuesta"
 
-Scenario: Create public catalog        
-    When I click on the "+" button
-    And I enter the required fields as show below
-    |Nombre:            | Mi Catalogo Publico     |
-    |Descripcion:       | Este Es Mi Catalogo     |
-    |Compañia:          | UCB                     |
-    And I select "UCB" on "Compañia"
-    And I click button add catalog
-    Then the confirmation screen is displayed
+@login @goToCatalogs @createCatalog 
+Scenario: Create poll
+    When I click button to add poll
+    And I enter the required fields to create poll as show below
+    |Nombre:            | Mi Encuesta            |
+    |Descripción:       | Esta Es Mi Encuesta    |
+    |Tipo:              | Ninguno                |
+    |Categoría:         | Mi Categoria           |
+    And I click button add poll
+    Then the confirmation " Encuesta creada con éxito " screen is displayed
 
-Scenario: View public catalog      
-    When I click on the catalog 
-    Then I will see catalog name 
-  
-Scenario: Delete public catalog        
-    When I click on the Eliminar button
-    And I confirm the delete action
-    Then the catalog will no longer be on the list
+@login @goToCatalogs
+Scenario: View poll      
+    When I click on poll "Mi Encuesta"
+    Then I will see poll name "Mi Encuesta"
+
+ @login @goToCatalogs @deleteCatalog
+Scenario: Delete poll
+    When I click on poll "Mi Encuesta"
+    And I click on the "Eliminar" poll button
+    And I confirm the delete poll action
+    Then the poll "Mi Encuesta" will no longer be on the list
+
