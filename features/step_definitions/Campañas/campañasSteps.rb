@@ -55,7 +55,7 @@ end
 When('I select attach the file {string}') do |string|
     #attach_file 'file', '/A.png'
     xpath = "//i[@class='fa fa-plus-circle add-option-icon']/span[@class='add-option-name']/../../input"
-    imgPath="C:\\Users\\migue\\Documents\\DigitAll Experiences Tests\\A.png"
+    imgPath="C:\\Users\\Adrian\\Desktop\\II_2020\\Gestion de Calidad\\Practica4_Automatitation\\Final\\DigitAll-Experiences-Tests\\A.png"
     
     attach_file('file', imgPath, visible: false)
 end

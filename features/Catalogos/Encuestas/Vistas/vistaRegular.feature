@@ -3,7 +3,7 @@ Feature: Tab Regular View
     I want to create, see and delete Regular Views
 
 
-@login @goToCatalogs @createCatalog @createPoll 
+@login @goToCatalogs @createCatalog @createPoll @deleteCatalog
 Scenario: Create Initial View
     When I click button to add view
     And I enter the required fields to create regular view as shown below
