@@ -13,7 +13,7 @@ Scenario: Create Initial View
     And I click button add view
     Then the confirmation view created "Vista creada con éxito" screen is displayed
 
-@login @goToCatalogs @goToPoll
+@login @goToCatalogs @goToPoll @deleteCatalog
 Scenario: See Initial View      
     When I click on arrow next to a view named "Mi Vista Inicial"
     Then I will see a view with name "Mi Vista Inicial"

@@ -5,7 +5,7 @@ Feature: Tab Poll
 Background: Setup poll
     When I click on the catalog "Mi Catalogo Encuesta"
 
-@login @goToCatalogs @createCatalog
+@login @goToCatalogs @createCatalog 
 Scenario: Create poll
     When I click button to add poll
     And I enter the required fields to create poll as show below
@@ -21,7 +21,7 @@ Scenario: View poll
     When I click on poll "Mi Encuesta"
     Then I will see poll name "Mi Encuesta"
 
- @login @goToCatalogs 
+ @login @goToCatalogs @deleteCatalog
 Scenario: Delete poll
     When I click on poll "Mi Encuesta"
     And I click on the "Eliminar" poll button

@@ -33,7 +33,7 @@ Before '@createCatalog' do
 end
 
 Before '@createPoll' do 
-  xPath = "//span[text()='Mi Catalogo Encuesta']"
+  xPath = "//span[text()='Mi Catalogo Encuesta'][1]"
   find(:xpath, xPath).click
   xPath = "//span/descendant::i[@class= 'fa fa-plus-circle create-plus-icon']/.."
   find(:xpath, xPath).click

@@ -3,7 +3,7 @@ Feature: Tab Simple Question
     I want to create, see and delete Simple Questions
 
 
-@login @goToCatalogs @createCatalog @createPoll @createRegularView
+@login @goToCatalogs @createCatalog @createPoll @createRegularView @deleteCatalog
 Scenario: Create Simple Question
     When I click on arrow next to a view named "Mi Vista Regular"
     And I click button to add question
