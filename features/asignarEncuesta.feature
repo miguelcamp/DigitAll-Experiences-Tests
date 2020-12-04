@@ -12,8 +12,8 @@ Scenario: Assign Touch Point Poll
   Given I am on the "Asignar Encuestas" window
   When I enter the required fields as show below
 	|Nombre de Asignacion:      | Pepito            |
-    |Inicio:                    | 11/11/2020        |	
-    |Conclusión: 	            | 12/12/2020        |
+  |Inicio:                    | 11/11/2020        |	
+  |Conclusión: 	              | 12/12/2020        |
   And I select a public poll named "Encuesta TP Publica"
   And I select the option "Plataforma" under "Agencia 2"
   And I click on the "Asignar" button

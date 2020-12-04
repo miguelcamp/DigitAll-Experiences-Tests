@@ -2,7 +2,7 @@ Given(/^I am on the campaigns page$/) do
     page.driver.browser.manage.window.maximize
     visit('/campaigns')
 end
-
+xpath=""
 Given(/^I have logged in to the Digitall Experiences website$/) do
     page.driver.browser.manage.window.maximize
     visit('/login')
@@ -19,11 +19,59 @@ When(/^I click on the "([^"]*)" button$/) do |arg1|
 
 
 Then(/^I will open the create campaign form$/) do
-   expect(page).to have_content("Crear Campaña")
-  end
+    expect(page).to have_content("Crear Campaña")
+end
 
-When(/^I click on the arrow next to a campaign$/) do
-  xpath = '/html/body/app-root/div/div/app-campaigns/div/div/div/div/button'
-  find(css, 'fa fa-caret-down even').click
-  sleep(3)
+When(/^I click on the arrow next to a campaign named "([^"]*)"$/) do |arg1|
+    xpath = "//span[text()='"+arg1+"']/../.."
+    find(:xpath, xpath+"//i" ).click
+    sleep(3)
  end
+
+Then('I will have the options to Edit, View, and Delete') do
+    xpath+="/.."
+    print(xpath)
+    expect(find(:xpath, xpath)).to have_content("Editar")  
+end
+
+When(/^I enter the required campaign fields as show below$/) do |table|
+    data = table.rows_hash
+    data.each_pair do |key, value|
+        case key
+        when "Nombre de Campaña:"
+            fill_in 'Ingrese nombre', :with => value
+        when "Inicio de campaña:"
+            fill_in 'Fecha de inicio', :with => value
+        when "Fin de campaña:"
+            fill_in 'Fecha de conclusión', :with => value
+        end
+    end
+end
+
+When('I select the {string} from the companies list') do |string|
+    select(string, :from => 'companyId')
+    sleep(3)
+end
+
+When('I select attach the file {string}') do |string|
+    #attach_file 'file', '/A.png'
+    xpath = "//i[@class='fa fa-plus-circle add-option-icon']/span[@class='add-option-name']/../../input"
+    #find(:xpath,xpath).attach_file('file', 'C:\Users\migue\Documents\DigitAll Experiences Tests\A.png')
+    sleep(3)
+end
+
+When('I select the color black for colors') do
+    xpath ="//Label [text()='Color:']/../input"
+    value="#000000"
+    page.find(:xpath, xpath).execute_script('this.value = arguments[0]', value)
+end
+
+When('I click the create button') do
+    xpath ="//button[@class='btn btn-outline-primary btn-sm button-create']"
+    page.find(:xpath, xpath).click
+    sleep(10)
+end
+
+Then('I will create a new campaign') do
+    pending # Write code here that turns the phrase above into concrete actions
+end
