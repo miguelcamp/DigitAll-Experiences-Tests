@@ -15,7 +15,6 @@ When(/^I enter the assignment details as show below$/) do |table|
             fill_in 'Fecha de conclusión', :with => value
         end
     end
-    sleep(5)
 end
 
 When('I select a public poll named {string}') do |pollName|

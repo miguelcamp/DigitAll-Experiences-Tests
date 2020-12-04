@@ -2,7 +2,6 @@ Feature: Mystery Shopper Polls
     As a campaign manager
     I want to review Mystery Shopper polls
 
-#Scenario: Ver inspector
 Background: Campaign details page
   Given I have logged in to the Digitall Experiences website
   And I am on the campaigns page
@@ -19,7 +18,6 @@ Scenario: Assign inspector
     And I select the "test inspector" from the inspector list
     And I click the assign inspector button
     Then an inspector named "test inspector" exists in the inspector list
-#Scenario: Ver vistas
 
 Scenario: Eliminar
     Given I have a poll assignment named "MS Publica"
