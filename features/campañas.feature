@@ -15,15 +15,16 @@ Scenario: Create campaign
     |Fin de campaña:          | 12/12/2020        |
   And I select the "UCB Prueba" from the companies list
   And I select attach the file "A.png"
-  And I select the color black for colors
+  And I select the color white for colors
   And I click the create button
-  Then I will create a new campaign
+  Then a test campaign named "Prueba AMMC Auto" exists
 
 
-# Scenario: View campaign actions      
-#   When I click on the arrow next to a campaign named "Prueba AMMC"
-#   Then I will have the options to Edit, View, and Delete
-# #And I will see additional info for the campaign
+
+Scenario: View campaign actions      
+  When I click on the arrow next to a campaign named "Prueba AMMC"
+  Then I will have the options to Edit, View, and Delete
+  And I will see additional info for the campaign
 
 
 # Scenario: Edit campaign        
