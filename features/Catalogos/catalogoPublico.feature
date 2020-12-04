@@ -7,20 +7,18 @@ Background: Setup
     And I am on the catalogs page
 
 Scenario: Create public catalog        
-    When I click on the "+" button
+    When I click on the "Añadir Catalogo Publico" button
     And I enter the required fields as show below
     |Nombre:            | Mi Catalogo Publico     |
     |Descripcion:       | Este Es Mi Catalogo     |
-    |Compañia:          | UCB                     |
-    And I select "UCB" on "Compañia"
     And I click button add catalog
     Then the confirmation screen is displayed
 
 Scenario: View public catalog      
-    When I click on the catalog 
-    Then I will see catalog name 
+    When I click on the catalog "Mi Catalogo Publico"
+    Then I will see catalog name "Mi Catalogo Publico"
   
 Scenario: Delete public catalog        
-    When I click on the Eliminar button
-    And I confirm the delete action
-    Then the catalog will no longer be on the list
+    When I click on the Eliminar button from "Mi Catalogo Publico"
+    And I confirm the delete action 
+    Then the catalog "Mi Catalogo Publico" will no longer be on the list

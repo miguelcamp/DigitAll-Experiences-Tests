@@ -7,7 +7,7 @@ Background: Setup
     And I am on the catalogs page
 @ca
 Scenario: Create private catalog        
-    When I click on the "+" button
+    When I click on the "Añadir Catalogo Privado" button
     And I enter the required fields as show below
     |Nombre:            | Mi Catalogo Privado     |
     |Descripcion:       | Este Es Mi Catalogo     |
@@ -17,10 +17,10 @@ Scenario: Create private catalog
     Then the confirmation screen is displayed
 
 Scenario: View private catalog      
-    When I click on the catalog 
-    Then I will see catalog name 
+    When I click on the catalog "Mi Catalogo Privado"
+    Then I will see catalog name "Mi Catalogo Privado"
   
 Scenario: Delete private catalog        
-    When I click on the Eliminar button
+    When I click on the Eliminar button from "Mi Catalogo Privado"
     And I confirm the delete action
-    Then the catalog will no longer be on the list
+    Then the catalog "Mi Catalogo Privado" will no longer be on the list
