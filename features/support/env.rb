@@ -5,6 +5,7 @@ require 'capybara/cucumber'
 require 'capybara-screenshot/cucumber'
 
 #PTravel Settings
+ENV['URL']="http://3.14.118.36:8080/dallex/login"
 ENV['USER']="admin"
 ENV['PSW']="admin1234."
 
@@ -30,8 +31,8 @@ class CapybaraDriverRegistrar
 end
 # Register various Selenium drivers
 #CapybaraDriverRegistrar.register_selenium_driver(:internet_explorer)
-#CapybaraDriverRegistrar.register_selenium_driver(:firefox)
-CapybaraDriverRegistrar.register_selenium_driver(:chrome)
+CapybaraDriverRegistrar.register_selenium_driver(:firefox)
+#CapybaraDriverRegistrar.register_selenium_driver(:chrome)
 Capybara.run_server = false
 #World(Capybara)
 

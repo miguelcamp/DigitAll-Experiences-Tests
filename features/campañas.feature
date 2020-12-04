@@ -7,7 +7,7 @@ Background:
   And I am on the campaigns page
 
 Scenario: Create campaign        
-  When I click on the "Crear Campaña" button
+  When I click on the create campaign button
   And I will open the create campaign form
   And I enter the required campaign fields as show below
 	  |Nombre de Campaña:       | Prueba AMMC Auto  |
@@ -24,7 +24,6 @@ Scenario: Create campaign
 Scenario: View campaign actions      
   When I click on the arrow next to a campaign named "Prueba AMMC"
   Then I will have the options to Edit, View, and Delete
-  And I will see additional info for the campaign
 
 
 # Scenario: Edit campaign        

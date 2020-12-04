@@ -3,16 +3,16 @@ Given(/^I am on the campaigns page$/) do
     visit('/campaigns')
 end
 xpath=""
-Given(/^I have logged in to the Digitall Experiences website$/) do
-    page.driver.browser.manage.window.maximize
-    visit('/login')
-    fill_in 'Usuario', :with => ENV['USER']
-    fill_in 'Password', :with => ENV['PSW']
-    xpath = '/html/body/app-root/div/div/app-login/div/div/div[2]/form/div/form/div/div[4]/div/button'
-    find(:xpath, xpath).click
-end
+# Given(/^I have logged in to the Digitall Experiences website$/) do
+#     page.driver.browser.manage.window.maximize
+#     visit('/login')
+#     fill_in 'Usuario', :with => ENV['USER']
+#     fill_in 'Password', :with => ENV['PSW']
+#     xpath = '/html/body/app-root/div/div/app-login/div/div/div[2]/form/div/form/div/div[4]/div/button'
+#     find(:xpath, xpath).click
+# end
 
-When(/^I click on the "([^"]*)" button$/) do |arg1|
+When(/^I click on the create campaign button$/) do
     xpath = '/html/body/app-root/div/div/app-campaigns/div/div/div/div/button'
     find(:xpath, xpath).click
    end
@@ -34,11 +34,12 @@ Then('I will have the options to Edit, View, and Delete') do
 end
 
 When(/^I enter the required campaign fields as show below$/) do |table|
+    text = Time.now.strftime("%d%m%Y%H%M")
     data = table.rows_hash
     data.each_pair do |key, value|
         case key
         when "Nombre de Campaña:"
-            fill_in 'Ingrese nombre', :with => value
+            fill_in 'Ingrese nombre', :with => value+text
         when "Inicio de campaña:"
             fill_in 'Fecha de inicio', :with => value
         when "Fin de campaña:"
