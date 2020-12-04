@@ -1,6 +1,7 @@
 Given(/^I am on the Digitall Experience website$/) do
     page.driver.browser.manage.window.maximize
     visit(ENV['URL'])
+
 end
 
 Given(/^I enter my user and password login$/) do
