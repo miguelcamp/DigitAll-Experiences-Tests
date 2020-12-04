@@ -4,7 +4,8 @@ require 'capybara/dsl'
 require 'capybara/cucumber'
 require 'capybara-screenshot/cucumber'
 
-#PTravel Settings
+#DigitAll Settings
+ENV['URL']="http://3.14.118.36:8080/dallex/login"
 ENV['USER']="admin"
 ENV['PSW']="admin1234."
 
